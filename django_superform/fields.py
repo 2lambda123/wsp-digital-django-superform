@@ -159,9 +159,10 @@ class FormField(CompositeField):
     prefix_name = "form"
     widget = FormWidget
 
-    def __init__(self, form_class, kwargs=None, **field_kwargs):
+    def __init__(self, form_class, initial=None, kwargs=None, **field_kwargs):
         super(FormField, self).__init__(**field_kwargs)
 
+        self.initial = initial
         self.form_class = form_class
         if kwargs is None:
             kwargs = {}
@@ -358,9 +359,12 @@ class FormSetField(CompositeField):
     prefix_name = "formset"
     widget = FormSetWidget
 
-    def __init__(self, formset_class, kwargs=None, **field_kwargs):
+    def __init__(self, formset_class, initial=None, kwargs=None, **field_kwargs):
         super(FormSetField, self).__init__(**field_kwargs)
 
+        if initial is None:
+            initial = ""
+        self.initial = initial
         self.formset_class = formset_class
         if kwargs is None:
             kwargs = {}
