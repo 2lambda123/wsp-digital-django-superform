@@ -10,7 +10,7 @@ class TemplateWidgetTests(TestCase):
     def test_it_puts_hidden_variable_in_context(self):
         widget = TemplateWidget()
 
-        widget_context = widget.get_context("foo", None, attrs={})
+        widget_context = widget.get_context("foo", None)
         self.assertEqual(widget_context["hidden"], False)
 
         class HiddenWidget(TemplateWidget):
@@ -18,7 +18,7 @@ class TemplateWidgetTests(TestCase):
 
         hidden_widget = HiddenWidget()
 
-        hidden_widget_context = hidden_widget.get_context("foo", None, attrs={})
+        hidden_widget_context = hidden_widget.get_context("foo", None)
         self.assertEqual(hidden_widget_context["hidden"], True)
 
     def test_it_recognizes_value_context_name(self):
@@ -27,7 +27,7 @@ class TemplateWidgetTests(TestCase):
 
         value = object()
         widget = DifferentValueNameWidget()
-        context = widget.get_context("foo", value, attrs={})
+        context = widget.get_context("foo", value)
 
         self.assertTrue(context["strange_name"] is value)
 

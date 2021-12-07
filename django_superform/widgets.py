@@ -37,6 +37,8 @@ class TemplateWidget(forms.Widget):
             context["hidden"] = True
 
         context.update(self.get_context_data())
+        if attrs is None:
+            attrs = {}
         context["attrs"] = self.build_attrs(attrs)
 
         return context

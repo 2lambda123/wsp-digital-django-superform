@@ -162,6 +162,8 @@ class FormField(CompositeField):
     def __init__(self, form_class, initial=None, kwargs=None, **field_kwargs):
         super(FormField, self).__init__(**field_kwargs)
 
+        if initial is None:
+            initial = ""
         self.initial = initial
         self.form_class = form_class
         if kwargs is None:
